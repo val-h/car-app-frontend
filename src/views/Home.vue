@@ -23,8 +23,7 @@ export default {
   },
   mounted () {
     // FIXME multiple loading posts for no reason
-    this.$store.dispatch('loadPosts')
-    this.$store.dispatch('loadPosts')
+    // Checked
     this.$store.dispatch('loadPosts')
     this.$store.dispatch('loadCurrentUser', { userId: this.user_id })
   }

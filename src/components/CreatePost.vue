@@ -105,7 +105,8 @@ export default {
   data () {
     return {
       // FIXME Better to store it as null
-      brandId: undefined,
+      // Checked
+      brandId: null,
       form: {
         model: -1,
         description: '',
@@ -118,10 +119,11 @@ export default {
   },
   computed: {
     // FIXME data has defined specifications and getter has specifications, this.specifications may give undesired results
+    // Checked
     ...mapGetters([
       'get_brands',
-      'models',
-      'specifications'
+      'models'
+      // 'specifications'
     ]),
     selectedBrandModels () {
       return this.models.filter(model => model.brand.id === this.brandId)
@@ -138,11 +140,12 @@ export default {
     },
     createPost () {
       // FIXME createPost takes only one argument, the formData
+      // Checked
       if (this.form.images.length === 0) {
-        this.$store.dispatch('createPost', { formData: this.form, withDefaultPicture: true })
+        this.$store.dispatch('createPost', { formData: this.form })
       } else {
         this.form.images = this.form.images.replace(/\n/g, ',').split(',')
-        this.$store.dispatch('createPost', { formData: this.form, withDefaultPicture: false })
+        this.$store.dispatch('createPost', { formData: this.form })
       }
       this.$router.push({ name: 'Home' })
     }

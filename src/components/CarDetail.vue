@@ -34,8 +34,9 @@
       <div class="car-addons">
         <h5>Features</h5>
         <!-- Object used as key throws warnings -->
+        <!-- Checked -->
         <h5  v-for="type in types"
-        :key="type">
+        :key="type.name">
          <b>{{ type.name }}</b>
 
           <h6
@@ -54,7 +55,8 @@
       <div class="about-user">
         <h6 class="user-name">
           <!-- FIXME Setting text inside the html tag instead of between brackets -->
-          <b Individual features></b>
+          <!-- Checked -->
+          <b>Individual features</b>
         </h6>
         <h6 class="user-city">
           <b>Sofia</b>
@@ -111,7 +113,8 @@ export default {
     },
     postDescription () {
       // FIXME Could be used string interpolation
-      return 'Description - ' + this.post.description
+      // Checked
+      return `Description - ${this.post.description}`
     }
   },
   methods: {
@@ -130,6 +133,10 @@ export default {
           this.currentImageSrc = this.links[0].src
         } catch (error) {
           //  FIXME no error handling
+          // Checked, somewhat
+
+          // Set default image
+          this.currentImageSrc = 'http://www.aof-clan.com/AoFWiki/images/6/60/No_Image_Available.png'
         }
       }
     }

@@ -2,7 +2,10 @@ import { ax } from '../axios-api'
 import store from '../store/index'
 
 // FIXME  Authorization headers should be set in axios plugin once.
+// ax.defaults.headers.common['Authorization'] = store.state.accessToken
+
 // FIXME  Too much console.logging and missing error handling
+// partial
 export default {
   async loadUsers ({ commit }) {
     // FIXME  Filters for users should be passed as objects or handled in BE
@@ -53,7 +56,8 @@ export default {
           })
         })
     } catch (error) {
-      // FIXME  no error handling on login
+      // Added
+      alert('Wrong Credentials!')
     }
   },
   userRegister (context, userCredentials) {

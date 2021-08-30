@@ -8,7 +8,8 @@
           </div>
             <div class="panel-body">
           <!-- FIXME Setting text inside the html tag instead of between brackets -->
-              <p v-if="incorrectAuth" Incorrect username or password></p>
+          <!-- Checked -->
+              <p v-if="incorrectAuth">Incorrect username or password</p>
               <form @submit.prevent="login" accept-charset="UTF-8" role="form">
                       <fieldset>
                   <div class="form-group">
@@ -46,19 +47,19 @@ export default {
     // FIXME  Trying to catch an error on action,
     // FIXME  .catch never will never be invoked because in userLogin action
     // FIXME  error doesn't get handled as well
+    // Checked
     login () {
-      this.$store.dispatch('userLogin', {
-        username: this.username,
-        password: this.password
-      })
-        .then(() => {
-          this.$router.push({ name: 'Home' })
+      try {
+        this.$store.dispatch('userLogin', {
+          username: this.username,
+          password: this.password
         })
-        .catch(err => {
-          if (err) {
-            this.incorrectAuth = true
-          }
-        })
+          .then(() => {
+            this.$router.push({ name: 'Home' })
+          })
+      } catch (error) {
+        this.incorrectAuth = true
+      }
     }
   }
 }

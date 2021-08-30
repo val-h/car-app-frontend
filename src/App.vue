@@ -9,7 +9,7 @@
 
 <script>
 import Navbar from '@/components/NavBar'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -25,14 +25,10 @@ export default {
       'user_id'
     ])
   },
-  methods: {
-    ...mapActions([
-      'loadModels'
-    ])
-  },
   mounted () {
     // FIXME Inconsistent use of ..mapActions or this.$store
-    this.loadModels()
+    // Checked
+    this.$store.dispatch('loadModels')
     this.$store.dispatch('loadBrands')
     this.$store.dispatch('loadPosts')
     this.$store.dispatch('loadSpecifications')

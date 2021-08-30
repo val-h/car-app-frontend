@@ -6,15 +6,42 @@
     </b-nav-form>
     <!-- List of posts -->
     <!-- FIXME using the whole objects for :key throws warnings -->
-    <div class="row" v-for="posts in chunkedPosts" :key="posts">
+    <!-- checked -->
+    <div class="row" v-for="posts in chunkedPosts" :key="posts[0].id">
       <div class="column" v-for="post in posts" :key="post.id">
         <router-link :to="`/posts/${post.id}`">
         <!-- FIXME doesn't show the card at all if no picture -->
+        <!-- Checked - poorly implemented, no idea for a more elegant approach -->
           <div v-if="post.photos.length > 0">
             <b-card
               no-body
               style="max-width: 20rem;"
               :img-src="post.photos[0].src"
+              img-alt="Image"
+              img-top
+            >
+              <template #header>
+                <h4 class="mb-0">{{ post.model.name }}</h4>
+              </template>
+
+              <b-card-body>
+                <b-card-title>{{ post.price }} $</b-card-title>
+                <b-card-sub-title class="mb-2">{{ post.published }}</b-card-sub-title>
+                <b-card-text>
+                  {{ post.description }}
+                </b-card-text>
+              </b-card-body>
+
+              <b-list-group flush>
+                <b-list-group-item>{{  post.phone_number }}</b-list-group-item>
+              </b-list-group>
+            </b-card>
+          </div>
+          <div v-else>
+            <b-card
+              no-body
+              style="max-width: 20rem;"
+              img-src="http://www.aof-clan.com/AoFWiki/images/6/60/No_Image_Available.png"
               img-alt="Image"
               img-top
             >

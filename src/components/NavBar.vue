@@ -7,11 +7,14 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <!-- Ifs could be simplified and not duplicated -->
-      <b-navbar-nav>
-        <b-nav-item v-if="!isLogged" to="/register">Register</b-nav-item>
-        <b-nav-item v-if="!isLogged" to="/login">Login</b-nav-item>
-        <b-nav-item v-if="isLogged" to="/logout">Logout</b-nav-item>
-        <b-nav-item v-if="isLogged" to="/post/create">Create post</b-nav-item>
+      <!-- Checked -->
+      <b-navbar-nav v-if="!isLogged">
+        <b-nav-item to="/register">Register</b-nav-item>
+        <b-nav-item to="/login">Login</b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav v-else>
+        <b-nav-item to="/logout">Logout</b-nav-item>
+        <b-nav-item to="/post/create">Create post</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
